@@ -1,8 +1,8 @@
 # mark-skills
 
-Claude Code skills ที่ Mark ใช้ทำงาน — รวมไว้ที่เดียวเพื่อติดตั้งบนเครื่องอื่นได้เร็ว.
+Claude Code dev skills ที่ Mark ใช้ — รวมไว้ที่เดียวเพื่อติดตั้งบนเครื่องอื่นได้เร็ว.
 
-38 skills แบ่ง 3 กลุ่ม: งานของ Mark (ads / web / ebook / เอกสาร), generic dev discipline, และ caveman suite.
+19 skills แบ่ง 3 กลุ่ม: generic dev discipline, caveman suite, และ third-party dev skills. (สกิลงานเฉพาะของ Mark เองไม่รวมใน repo นี้)
 
 ## ติดตั้ง
 
@@ -15,8 +15,8 @@ cd mark-skills
 ตัวเลือก:
 
 ```bash
-./install.sh -n                    # dry run — ดูว่าจะทำอะไร ไม่แตะไฟล์
-./install.sh ads-line ghost-chat   # ติดตั้งเฉพาะที่ระบุ
+./install.sh -n                       # dry run — ดูว่าจะทำอะไร ไม่แตะไฟล์
+./install.sh code-reviewer scrutinize # ติดตั้งเฉพาะที่ระบุ
 CLAUDE_SKILLS_DIR=/custom/path ./install.sh   # ปลายทางอื่น
 ```
 
@@ -24,36 +24,6 @@ CLAUDE_SKILLS_DIR=/custom/path ./install.sh   # ปลายทางอื่�
 - เสร็จแล้ว **restart Claude Code / เปิด session ใหม่** ให้มันโหลดสกิล
 
 ## Skills
-
-### งานของ Mark
-
-| Skill | ทำอะไร |
-|-------|--------|
-| `ads-line` | สร้าง LINE update message ของงานแอด จาก JSON ที่ดึงมาแล้ว |
-| `ads-onboard` | รับลูกค้าแอดใหม่ครั้งเดียวจบ — สร้างโฟลเดอร์ + CLAUDE.md + profile + เพิ่มใน clients.py |
-| `ghost-chat` | เช็ค "แชทผี" บนเพจ Facebook — แยกทักจริง vs กดปุ่มมั่ว + สาเหตุ + วิธีแก้ |
-| `backend-connect` | เชื่อม Vercel เข้า Supabase ผ่าน connector + cron keep-alive กัน free-tier pause |
-| `build-frontend` | build frontend MVP Next.js + Tailwind ทีละหน้าตาม Screens List |
-| `building-takeoff` | ถอดแบบก่อสร้าง + ออก BOQ สไตล์ช่างเขียว (โครงสร้าง, 3-input, หลายชีต) |
-| `capcut-editor` | แก้ CapCut project ผ่าน JSON — timeline, ตัด clip, subtitle, dead air, volume |
-| `clinic-affiliate-sales` | วางแผน+ขายบริการคลินิก PARISMA ผ่าน affiliate TMR (offer/script/commission) |
-| `company-website` | สร้างเว็บบริษัท/องค์กรครบวงจร — สัมภาษณ์ → เสนอแบบ → build → deploy |
-| `ebook-plan` | วางแผน ebook AI Easy Pro เล่มใหม่ — research → outline → จอง EB-NN |
-| `ebook-write` | เขียนเนื้อ ebook จาก outline → build PDF (Chrome headless) |
-| `ebook-launch` | ขึ้นขาย ebook บน aieasypro.com — ปก 2-stage → sale page → deploy |
-| `ev-car-compare` | PDF เปรียบเทียบรถ EV ในไทย (สเปค/ราคา/ผ่อน/ประกัน) ReportLab + Sarabun |
-| `md-scaffold` | สร้างชุด MD context ของโปรเจค (project/roles/features/design/database) จากเล่าปากเปล่า |
-| `pdf-quotation` | PDF ไทย (ใบเสนอราคา/รายงานผล) ReportLab + TH Sarabun |
-| `pdpa` | ทำเว็บ/ธุรกิจให้ตรง PDPA — privacy policy + cookie consent + form consent |
-| `sale-page` | landing/sale page หน้าเดียว convert สูง สำหรับยิงแอด |
-| `seo` | งาน SEO |
-| `supabase-setup` | เชื่อม Supabase เข้า Next.js — schema + CRUD + Auth |
-| `wireframe-lock` | ทำ wireframe เป็น "สัญญา" ให้ build ตรง 100% (port 1:1 ไม่เดา) |
-| `ux-ui-review` | UX/UI review ครอบทุก user type ทุกหน้า |
-| `ui-humanize-review` | รีวิว UI หา "AI slop" + fix ให้ดูเหมือนคนทำ |
-| `vercel-deploy` | deploy ขึ้น Vercel |
-| `multimodel` | orchestration หลายโมเดล — Opus วางแผน → route งานไป Opus/Sonnet/Haiku |
-| `to-tickets` | แปลง docs → tickets |
 
 ### Generic dev discipline
 
@@ -95,7 +65,7 @@ CLAUDE_SKILLS_DIR=/custom/path ./install.sh   # ปลายทางอื่�
 | `find-skills` | ค้น/แนะนำ agent skill ให้ติดตั้งเมื่อถามว่า "ทำ X ยังไง" | vercel-labs |
 | `grill-me` | สัมภาษณ์ซักแผน/ดีไซน์จนเข้าใจตรงกัน (ต้นฉบับของ grilling) | mattpocock |
 
-> เป็นงานของผู้เขียนเดิม — ใช้ตาม license ของแต่ละ repo. `karpathy-guidelines` (multica-ai) ไม่ซ้ำใส่เพราะมีในกลุ่ม generic dev แล้ว.
+> เป็นงานของผู้เขียนเดิม — ใช้ตาม license ของแต่ละ repo.
 
 ## เพิ่ม skill ใหม่เข้า repo
 
