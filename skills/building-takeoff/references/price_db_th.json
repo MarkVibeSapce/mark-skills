@@ -1,0 +1,76 @@
+{
+  "meta": {
+    "title": "ฐานข้อมูลราคาวัสดุ+ค่าแรง งานก่อสร้าง (ไทย) — baseline สำหรับประเมินราคา BOQ",
+    "region": "ภาคกลาง / กรุงเทพ-ปริมณฑล",
+    "as_of": "2026-06 (พ.ศ.2569 กลางปี)",
+    "currency": "THB",
+    "price_basis": "ราคาวัสดุ = ส่งมอบหน้าโรงงาน/หน้างาน ยังไม่รวม VAT 7% และค่าขนส่งระยะไกล. ค่าแรง = เรตเหมาช่างทั่วไป.",
+    "confidence_levels": {
+      "verified": "ดึงจากผู้ขาย/แหล่งจริง (เดือนนี้)",
+      "verified_range": "ดึงจริงแต่เป็นช่วง — ใช้ค่ากลาง",
+      "market_typical": "ค่าตลาดทั่วไปที่รู้กัน ต้องยืนยันกับผู้ขาย",
+      "estimate": "ประมาณการ ต้องเช็คก่อนใช้"
+    },
+    "disclaimer": "ใช้เป็นฐานตั้งต้น (seed) เท่านั้น. ราคาเหล็ก/คอนกรีตผันผวนรายสัปดาห์. ก่อนยื่นประมูลจริงต้องขอใบเสนอราคาผู้ขาย + เทียบราคากลางกรมบัญชีกลาง/สนค.",
+    "sources": [
+      "OneStockHome (เหล็กเส้น, คอนกรีต CPAC 240) — มิ.ย. 2569",
+      "Watsadu Online (น้ำหนักเหล็กต่อเส้น 10ม., มาตรฐาน)",
+      "ราคากลาง สนค. กระทรวงพาณิชย์ index.tpso.go.th / price.moc.go.th",
+      "บัญชีราคาวัสดุ-ค่าแรง สพฐ. ปีงบ 2569 (yotathai)"
+    ]
+  },
+
+  "steel_unit_weight_kg_per_bar_10m": {
+    "RB6": 2.22, "RB9": 4.99, "RB12": 8.88, "RB15": 13.87, "RB19": 22.26, "RB25": 38.53,
+    "DB10": 6.17, "DB12": 8.88, "DB16": 13.87, "DB20": 22.26, "DB25": 38.53, "DB28": 48.34, "DB32": 63.13,
+    "_note": "น้ำหนัก/เส้น 10ม. ใช้แปลง กก.↔เส้น. เส้น 12ม. = ×1.2. สูตรน้ำหนัก = D^2/162 กก./ม."
+  },
+
+  "materials": [
+    {"code":"CONC-180","group":"คอนกรีต","desc":"คอนกรีตผสมเสร็จ 180 ksc (งานหยาบ/lean)","unit":"ลบ.ม.","mat_rate":2050,"lab_rate":200,"confidence":"market_typical","note":"โม่ใหญ่ ก่อน VAT"},
+    {"code":"CONC-210","group":"คอนกรีต","desc":"คอนกรีตผสมเสร็จ 210 ksc","unit":"ลบ.ม.","mat_rate":2150,"lab_rate":280,"confidence":"market_typical"},
+    {"code":"CONC-240","group":"คอนกรีต","desc":"คอนกรีตผสมเสร็จ 240 ksc Cylinder (โครงสร้าง)","unit":"ลบ.ม.","mat_rate":2250,"lab_rate":300,"confidence":"verified","source":"CPAC OneStockHome 5cbm ~2,257 ex-works","note":"เท+แต่งผิว ค่าแรงรวมจี้+บ่ม"},
+    {"code":"CONC-240W","group":"คอนกรีต","desc":"คอนกรีต 240 ksc ผสมน้ำยากันซึม","unit":"ลบ.ม.","mat_rate":2450,"lab_rate":350,"confidence":"market_typical","note":"+admixture กันซึม"},
+    {"code":"CONC-280","group":"คอนกรีต","desc":"คอนกรีตผสมเสร็จ 280 ksc","unit":"ลบ.ม.","mat_rate":2400,"lab_rate":300,"confidence":"market_typical"},
+    {"code":"CONC-320","group":"คอนกรีต","desc":"คอนกรีตผสมเสร็จ 320 ksc","unit":"ลบ.ม.","mat_rate":2600,"lab_rate":320,"confidence":"market_typical"},
+    {"code":"CONC-LEAN","group":"คอนกรีต","desc":"คอนกรีตหยาบรองพื้น 1:3:5","unit":"ลบ.ม.","mat_rate":2000,"lab_rate":180,"confidence":"market_typical"},
+
+    {"code":"RB6","group":"เหล็กเสริม","desc":"เหล็กเส้นกลม RB6 SR24 มอก.","unit":"กก.","mat_rate":19.5,"lab_rate":5,"confidence":"verified_range","note":"SR24 ~19-20/กก. มิ.ย.69; ค่าแรง=ตัด+ดัด+ผูก"},
+    {"code":"RB9","group":"เหล็กเสริม","desc":"เหล็กเส้นกลม RB9 SR24 มอก.","unit":"กก.","mat_rate":19.0,"lab_rate":5,"confidence":"verified_range"},
+    {"code":"RB12","group":"เหล็กเสริม","desc":"เหล็กเส้นกลม RB12 SR24 มอก.","unit":"กก.","mat_rate":19.0,"lab_rate":4,"confidence":"verified_range"},
+    {"code":"DB12","group":"เหล็กเสริม","desc":"เหล็กข้ออ้อย DB12 SD40 มอก.","unit":"กก.","mat_rate":18.5,"lab_rate":4,"confidence":"verified_range","note":"SD40 ~17.2-19.1/กก. OneStockHome มิ.ย.69"},
+    {"code":"DB16","group":"เหล็กเสริม","desc":"เหล็กข้ออ้อย DB16 SD40 มอก.","unit":"กก.","mat_rate":18.5,"lab_rate":4,"confidence":"verified","source":"OneStockHome DB16 17.2-19.1/กก."},
+    {"code":"DB20","group":"เหล็กเสริม","desc":"เหล็กข้ออ้อย DB20 SD40 มอก.","unit":"กก.","mat_rate":18.5,"lab_rate":3.5,"confidence":"verified_range"},
+    {"code":"DB25","group":"เหล็กเสริม","desc":"เหล็กข้ออ้อย DB25 SD40 มอก.","unit":"กก.","mat_rate":18.5,"lab_rate":3.5,"confidence":"verified_range"},
+    {"code":"TIE-WIRE","group":"เหล็กเสริม","desc":"ลวดผูกเหล็ก","unit":"กก.","mat_rate":45,"lab_rate":0,"confidence":"market_typical","note":"ค่าแรงผูกรวมในค่าแรงเหล็กแล้ว"},
+
+    {"code":"FORM-PLY","group":"แบบหล่อ","desc":"งานไม้แบบ (ไม้อัด 10mm + ไม้คร่าว)","unit":"ตร.ม.","mat_rate":130,"lab_rate":150,"confidence":"market_typical","note":"ราคาต่อการใช้ 1 ครั้ง; ไม้อัด ~350-420/แผ่น 2.88ตร.ม. reuse 2-3 ครั้ง"},
+    {"code":"NAIL","group":"แบบหล่อ","desc":"งานตะปู","unit":"กก.","mat_rate":40,"lab_rate":0,"confidence":"market_typical"},
+
+    {"code":"SAND-FILL","group":"งานดิน","desc":"ทรายหยาบบดอัดแน่น","unit":"ลบ.ม.","mat_rate":450,"lab_rate":120,"confidence":"market_typical","note":"ทรายหยาบ ~400-500/ลบ.ม."},
+    {"code":"SOIL-FILL","group":"งานดิน","desc":"ดินถม + บดอัด","unit":"ลบ.ม.","mat_rate":300,"lab_rate":90,"confidence":"market_typical","note":"ดินถม ~250-350/ลบ.ม. รวมขน"},
+    {"code":"SOIL-CUT","group":"งานดิน","desc":"งานดินขุด (เครื่องจักร/แรงคน)","unit":"ลบ.ม.","mat_rate":0,"lab_rate":120,"confidence":"market_typical"},
+    {"code":"PE-SHEET","group":"งานดิน","desc":"แผ่นพลาสติก PE ปูพื้น 0.07mm","unit":"ตร.ม.","mat_rate":12,"lab_rate":6,"confidence":"market_typical"},
+    {"code":"PILE-CUT","group":"เสาเข็ม","desc":"งานสกัดหัวเสาเข็ม","unit":"ต้น","mat_rate":0,"lab_rate":150,"confidence":"estimate","note":"แรงคน ขึ้นกับขนาดเข็ม"},
+
+    {"code":"WALL-AAC","group":"ผนัง","desc":"ก่อผนังอิฐมวลเบา หนา 7.5cm + ปูนก่อ","unit":"ตร.ม.","mat_rate":280,"lab_rate":180,"confidence":"market_typical","note":"บล็อก ~28-35/ก้อน × ~8.3 ก้อน/ตร.ม."},
+    {"code":"WALL-BRICK","group":"ผนัง","desc":"ก่อผนังอิฐมอญครึ่งแผ่น","unit":"ตร.ม.","mat_rate":190,"lab_rate":210,"confidence":"market_typical"},
+    {"code":"PLASTER","group":"ผนัง","desc":"ฉาบปูนเรียบ (ต่อหน้า)","unit":"ตร.ม.","mat_rate":60,"lab_rate":130,"confidence":"market_typical"},
+    {"code":"PAINT","group":"สี","desc":"งานสีรองพื้น+ทับหน้า (ภายใน/นอก)","unit":"ตร.ม.","mat_rate":55,"lab_rate":75,"confidence":"market_typical"},
+
+    {"code":"CEIL-GYP","group":"ฝ้า","desc":"ฝ้ายิปซัม 9mm โครง metal stud","unit":"ตร.ม.","mat_rate":190,"lab_rate":160,"confidence":"market_typical"},
+    {"code":"FLOOR-TILE","group":"พื้น","desc":"พื้นกระเบื้อง/แกรนิโต รวมปูน","unit":"ตร.ม.","mat_rate":350,"lab_rate":220,"confidence":"market_typical","note":"ขึ้นกับเกรดกระเบื้อง"},
+    {"code":"WATERPROOF","group":"กันซึม","desc":"กันซึม membrane (acrylic/PU) ห้องน้ำ-ดาดฟ้า","unit":"ตร.ม.","mat_rate":280,"lab_rate":120,"confidence":"market_typical"},
+
+    {"code":"ROOF-MTL","group":"หลังคา","desc":"หลังคา Metal Sheet + ฉนวน 3\" (Aqualine/Smart Seam)","unit":"ตร.ม.","mat_rate":650,"lab_rate":180,"confidence":"estimate","note":"รุ่น insulated premium; ไม่รวมโครงเหล็ก"},
+    {"code":"STEEL-STRUCT","group":"เหล็กรูปพรรณ","desc":"เหล็กรูปพรรณ (I-beam/กล่อง) ทำโครงหลังคา","unit":"กก.","mat_rate":35,"lab_rate":18,"confidence":"market_typical","note":"รวมเชื่อม+ทาสีกันสนิม; เหล็กรูปพรรณ ~33-40/กก."}
+  ],
+
+  "labour_reference_per_ton_steel": {
+    "ผูกเหล็กเสริม": "3,500-5,000 บาท/ตัน (≈ 3.5-5 บาท/กก.)",
+    "note": "บาง BOQ คิดค่าแรงเหล็กต่อตัน — แปลงเป็น/กก. หาร 1000"
+  },
+
+  "vat_pct": 7,
+  "usage_note": "เติม mat_rate/lab_rate ลง items ของ boq_contractor.py JSON ตาม code/desc ที่ตรงกัน. ค่าทั้งหมดยังไม่รวม VAT — VAT คิดท้าย QT. เหล็ก: ถ้า BOQ ใช้หน่วย กก. ใส่ rate/กก. ตรงๆ; ถ้าใช้หน่วยเส้น ให้คูณน้ำหนัก/เส้นจาก steel_unit_weight ก่อน."
+}

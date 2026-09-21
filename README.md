@@ -1,0 +1,90 @@
+# mark-skills
+
+Claude Code skills ที่ Mark ใช้ทำงาน — รวมไว้ที่เดียวเพื่อติดตั้งบนเครื่องอื่นได้เร็ว.
+
+38 skills แบ่ง 3 กลุ่ม: งานของ Mark (ads / web / ebook / เอกสาร), generic dev discipline, และ caveman suite.
+
+## ติดตั้ง
+
+```bash
+git clone <repo-url> mark-skills
+cd mark-skills
+./install.sh              # copy ทุก skill เข้า ~/.claude/skills/
+```
+
+ตัวเลือก:
+
+```bash
+./install.sh -n                    # dry run — ดูว่าจะทำอะไร ไม่แตะไฟล์
+./install.sh ads-line ghost-chat   # ติดตั้งเฉพาะที่ระบุ
+CLAUDE_SKILLS_DIR=/custom/path ./install.sh   # ปลายทางอื่น
+```
+
+- ถ้ามี skill ชื่อซ้ำอยู่แล้ว → ย้ายของเดิมเป็น `<name>.bak-<timestamp>` ก่อน copy ทับ (ไม่ลบทิ้ง)
+- เสร็จแล้ว **restart Claude Code / เปิด session ใหม่** ให้มันโหลดสกิล
+
+## Skills
+
+### งานของ Mark
+
+| Skill | ทำอะไร |
+|-------|--------|
+| `ads-line` | สร้าง LINE update message ของงานแอด จาก JSON ที่ดึงมาแล้ว |
+| `ads-onboard` | รับลูกค้าแอดใหม่ครั้งเดียวจบ — สร้างโฟลเดอร์ + CLAUDE.md + profile + เพิ่มใน clients.py |
+| `ghost-chat` | เช็ค "แชทผี" บนเพจ Facebook — แยกทักจริง vs กดปุ่มมั่ว + สาเหตุ + วิธีแก้ |
+| `backend-connect` | เชื่อม Vercel เข้า Supabase ผ่าน connector + cron keep-alive กัน free-tier pause |
+| `build-frontend` | build frontend MVP Next.js + Tailwind ทีละหน้าตาม Screens List |
+| `building-takeoff` | ถอดแบบก่อสร้าง + ออก BOQ สไตล์ช่างเขียว (โครงสร้าง, 3-input, หลายชีต) |
+| `capcut-editor` | แก้ CapCut project ผ่าน JSON — timeline, ตัด clip, subtitle, dead air, volume |
+| `clinic-affiliate-sales` | วางแผน+ขายบริการคลินิก PARISMA ผ่าน affiliate TMR (offer/script/commission) |
+| `company-website` | สร้างเว็บบริษัท/องค์กรครบวงจร — สัมภาษณ์ → เสนอแบบ → build → deploy |
+| `ebook-plan` | วางแผน ebook AI Easy Pro เล่มใหม่ — research → outline → จอง EB-NN |
+| `ebook-write` | เขียนเนื้อ ebook จาก outline → build PDF (Chrome headless) |
+| `ebook-launch` | ขึ้นขาย ebook บน aieasypro.com — ปก 2-stage → sale page → deploy |
+| `ev-car-compare` | PDF เปรียบเทียบรถ EV ในไทย (สเปค/ราคา/ผ่อน/ประกัน) ReportLab + Sarabun |
+| `md-scaffold` | สร้างชุด MD context ของโปรเจค (project/roles/features/design/database) จากเล่าปากเปล่า |
+| `pdf-quotation` | PDF ไทย (ใบเสนอราคา/รายงานผล) ReportLab + TH Sarabun |
+| `pdpa` | ทำเว็บ/ธุรกิจให้ตรง PDPA — privacy policy + cookie consent + form consent |
+| `sale-page` | landing/sale page หน้าเดียว convert สูง สำหรับยิงแอด |
+| `seo` | งาน SEO |
+| `supabase-setup` | เชื่อม Supabase เข้า Next.js — schema + CRUD + Auth |
+| `wireframe-lock` | ทำ wireframe เป็น "สัญญา" ให้ build ตรง 100% (port 1:1 ไม่เดา) |
+| `ux-ui-review` | UX/UI review ครอบทุก user type ทุกหน้า |
+| `ui-humanize-review` | รีวิว UI หา "AI slop" + fix ให้ดูเหมือนคนทำ |
+| `vercel-deploy` | deploy ขึ้น Vercel |
+| `multimodel` | orchestration หลายโมเดล — Opus วางแผน → route งานไป Opus/Sonnet/Haiku |
+| `to-tickets` | แปลง docs → tickets |
+
+### Generic dev discipline
+
+| Skill | ทำอะไร |
+|-------|--------|
+| `debug-mantra` | ระเบียบ debug 4 มนตรา — reproduce, trace fail path, falsify, cross-reference |
+| `karpathy-guidelines` | guideline ลด LLM coding mistakes (surgical changes, simplicity) |
+| `handoff` | เขียน handoff doc ให้ agent ถัดไปทำต่อ |
+| `scrutinize` | review plan/PR/diff จากมุมคนนอก — ตั้งคำถาม intent + trace code path |
+| `post-mortem` | เขียน RCA ของบั๊กที่ fix แล้ว — root cause, mechanism, fix, validation |
+| `grilling` | ซัก stress-test แผน/ไอเดีย/การตัดสินใจ |
+
+### caveman suite
+
+โหมดสื่อสารบีบอัด (พูดแบบมนุษย์ถ้ำ ลด token ~75%) + subagent helpers.
+
+| Skill | ทำอะไร |
+|-------|--------|
+| `caveman` | โหมด caveman หลัก (lite/full/ultra + wenyan) |
+| `caveman-commit` | commit message แบบบีบอัด (Conventional Commits) |
+| `caveman-compress` | บีบอัด memory file (CLAUDE.md/todos) เป็น caveman |
+| `caveman-help` | reference card ของ caveman modes |
+| `caveman-review` | code review comment แบบบีบอัด บรรทัดเดียวต่อ finding |
+| `caveman-stats` | token usage + saving ของ session |
+| `cavecrew` | ตัวช่วยตัดสินใจ delegate งานไป caveman subagents |
+
+> **caveman note:** โหมด caveman เต็มรูปแบบใช้ SessionStart hook (`~/.claude/settings.json`) ด้วย. `install.sh` copy แค่ตัว skill — ถ้าอยากให้ auto-active ทุก session ต้องตั้ง hook เอง (ดู `caveman/SKILL.md`).
+
+## เพิ่ม skill ใหม่เข้า repo
+
+```bash
+cp -R ~/.claude/skills/<new-skill> skills/<new-skill>
+# แก้ README ตารางด้านบน แล้ว commit + push
+```

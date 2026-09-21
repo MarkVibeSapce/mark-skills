@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe — [ชื่อโปรเจค]</title>
+
+<!-- ═══════════════════════════════════════════════════════════════
+  DESIGN TOKENS — build ต้องใช้ค่านี้เป๊ะ (ตั้งใน tailwind.config ตอน build)
+    color:   primary #2F80ED / ink #0B1F3A / bg #FFFFFF / muted #6B7280 / accent #F2C94C
+    font:    display "Poppins" / body "Sarabun"
+    spacing: หน่วยฐาน 4px (Tailwind) — section gap = py-12 md:py-16
+    radius:  rounded-2xl (การ์ด) / rounded-lg (ปุ่ม)
+    mobile:  default = เรียงลงคอลัมน์เดียว (stack)   <-- กัน AI เดา layout มือถือ
+    signature: การ์ดมีป้าย badge ลอยมุมขวาบน        <-- 1 อย่างที่จำได้ของหน้านี้
+  ── ⚙️ นี่คือ TEMPLATE กลาง (ตัวอย่าง = หน้ารายการสินค้า/บริการทั่วไป)
+     ใช้กับธุรกิจอะไรก็ได้ — เปลี่ยน token + entity (Item→Product/Course/Property/...)
+     + copy ให้ตรงแบรนด์ แล้วใส่ data-* annotation ให้ครบ
+═══════════════════════════════════════════════════════════════ -->
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  body { font-family: "Sarabun", sans-serif; color: #0B1F3A; }
+  h1,h2,h3,.font-display { font-family: "Poppins", sans-serif; }
+</style>
+</head>
+
+<!-- data-screen = route ของหน้านี้ -->
+<body class="bg-white" data-screen="/items">
+
+  <!-- ── Header ─────────────────────────────────────────── -->
+  <header data-component="SiteHeader"
+          class="flex items-center justify-between px-5 py-4 border-b">
+    <span class="font-display text-xl font-bold text-[#0B1F3A]">[ชื่อแบรนด์]</span>
+    <a data-action="goto:/login"
+       class="rounded-lg bg-[#2F80ED] px-4 py-2 text-sm font-semibold text-white">
+      เข้าสู่ระบบ
+    </a>
+  </header>
+
+  <!-- ── Hero / ค้นหา ───────────────────────────────────── -->
+  <section data-component="SearchHero" class="px-5 py-12 md:py-16 text-center">
+    <h1 class="text-2xl md:text-4xl font-bold text-[#0B1F3A]">[หัวข้อหลักของหน้า]</h1>
+    <p class="mt-2 text-[#6B7280]">[คำอธิบายสั้น 1 บรรทัด]</p>
+    <div class="mx-auto mt-6 flex max-w-md flex-col gap-2 sm:flex-row">
+      <input data-field="search.keyword" placeholder="ค้นหา..."
+             class="flex-1 rounded-lg border px-4 py-3 text-sm">
+      <button data-action="submit:search"
+              class="rounded-lg bg-[#2F80ED] px-5 py-3 text-sm font-semibold text-white">
+        ค้นหา
+      </button>
+    </div>
+  </section>
+
+  <!-- ── รายการ (state ปกติ = มีข้อมูล) ─────────────────── -->
+  <!-- ชื่อ ItemList โผล่ 3 ที่ (default/empty/error) = component ตัวเดียว สลับตาม state -->
+  <section data-component="ItemList" data-state="default" class="px-5 pb-12">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+
+      <!-- data-list = การ์ดนี้ทำซ้ำต่อ 1 record → build ใช้ .map() -->
+      <article data-component="ItemCard" data-list
+               data-action="goto:/item/:id"
+               class="relative overflow-hidden rounded-2xl border shadow-sm">
+        <!-- signature: badge ลอยมุมขวาบน -->
+        <span data-field="item.badge"
+              class="absolute right-3 top-3 rounded-lg bg-[#F2C94C] px-2 py-1 text-xs font-semibold">
+          [ป้าย]
+        </span>
+        <div class="h-40 bg-gray-200"><!-- data-field="item.image" --></div>
+        <div class="p-4">
+          <h3 data-field="item.title" class="font-semibold">[ชื่อรายการ]</h3>
+          <p data-field="item.subtitle" class="text-sm text-[#6B7280]">[รายละเอียดย่อย]</p>
+        </div>
+      </article>
+
+      <!-- ตอน wireframe ก๊อปการ์ดอีก 2-3 ใบ เพื่อเห็น layout grid -->
+
+    </div>
+  </section>
+
+  <!-- ── STATE: ว่าง — ต้อง build ให้ครบ ─────────────────── -->
+  <section data-component="ItemList" data-state="empty" class="hidden px-5 py-16 text-center">
+    <!-- empty = บอกทางออก ไม่ใช่หน้าเปล่า -->
+    <p class="text-[#6B7280]">ยังไม่มีรายการ</p>
+    <button data-action="clear:search"
+            class="mt-3 rounded-lg border px-4 py-2 text-sm font-semibold">
+      ล้างการค้นหา
+    </button>
+  </section>
+
+  <!-- ── STATE: error — ต้อง build ให้ครบ ───────────────── -->
+  <section data-component="ItemList" data-state="error" class="hidden px-5 py-16 text-center">
+    <p class="text-[#6B7280]">โหลดข้อมูลไม่สำเร็จ</p>
+    <button data-action="retry:search"
+            class="mt-3 rounded-lg bg-[#2F80ED] px-4 py-2 text-sm font-semibold text-white">
+      ลองใหม่
+    </button>
+  </section>
+
+</body>
+</html>
+<!-- ═══════════════════════════════════════════════════════════════
+  CHECKLIST ก่อน LOCK:
+  [ ] เปลี่ยน [placeholder] + entity + token ให้ตรงแบรนด์แล้ว
+  [ ] ทุก element สำคัญมี data-component / data-field / data-action
+  [ ] การ์ดใน list มี data-list
+  [ ] copy เป็นของจริง ไม่มี lorem / ไม่เหลือ [placeholder]
+  [ ] state empty + error ครบทุก list
+  [ ] data-field ทุกตัวมี table.column อยู่ใน database.md
+  [ ] signature ชัด 1 อย่าง ที่เหลือเงียบ (MVP restraint)
+═══════════════════════════════════════════════════════════════ -->
