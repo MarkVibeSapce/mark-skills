@@ -82,6 +82,21 @@ CLAUDE_SKILLS_DIR=/custom/path ./install.sh   # ปลายทางอื่�
 
 > **caveman note:** โหมด caveman เต็มรูปแบบใช้ SessionStart hook (`~/.claude/settings.json`) ด้วย. `install.sh` copy แค่ตัว skill — ถ้าอยากให้ auto-active ทุก session ต้องตั้ง hook เอง (ดู `caveman/SKILL.md`).
 
+### Third-party dev skills
+
+สกิลพัฒนาโปรเจคที่ไม่ใช่ของ Mark — โหลด/mirror มาจาก marketplace คนอื่น. เครดิตเจ้าของตามคอลัมน์ Source.
+
+| Skill | ทำอะไร | Source |
+|-------|--------|--------|
+| `frontend-design` | สร้าง frontend UI คุณภาพสูง เลี่ยง look แบบ AI generic | anthropics |
+| `code-reviewer` | วิเคราะห์ diff/ไฟล์ หา bug + ช่องโหว่ security (SQLi/XSS) | jeffallan |
+| `readme-blueprint-generator` | gen README.md จากโครงสร้าง docs ของโปรเจค | github/awesome-copilot |
+| `remotion-best-practices` | best practices ทำวิดีโอด้วย Remotion (React) | remotion-dev |
+| `find-skills` | ค้น/แนะนำ agent skill ให้ติดตั้งเมื่อถามว่า "ทำ X ยังไง" | vercel-labs |
+| `grill-me` | สัมภาษณ์ซักแผน/ดีไซน์จนเข้าใจตรงกัน (ต้นฉบับของ grilling) | mattpocock |
+
+> เป็นงานของผู้เขียนเดิม — ใช้ตาม license ของแต่ละ repo. `karpathy-guidelines` (multica-ai) ไม่ซ้ำใส่เพราะมีในกลุ่ม generic dev แล้ว.
+
 ## เพิ่ม skill ใหม่เข้า repo
 
 ```bash
